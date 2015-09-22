@@ -16,16 +16,11 @@ public class VendingMachine
         this.cans = 10;
         this.tokens = 0;
     }
-    /**
-     * Constructor for objects of class VendingMachine
-     */
     public VendingMachine(int cans)
     {
-        // initialise instance variables
         this.cans = cans;
         this.tokens = 0;
     }
-    
 
     /**
      * Method to buy a can of soda

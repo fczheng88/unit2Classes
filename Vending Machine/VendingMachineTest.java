@@ -24,6 +24,8 @@ public class VendingMachineTest
     {
         VendingMachine thing = new VendingMachine();
         assertEquals(10, thing.getCans());
+        VendingMachine thing2 = new VendingMachine(2);
+        assertEquals(2, thing2.getCans());
     }
     @Test
     public void testFillUp()
