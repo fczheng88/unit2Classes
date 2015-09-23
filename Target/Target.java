@@ -17,6 +17,7 @@ public class Target
     private double ctrY;
     private double radius;
     private double radiusPerCircle;
+    private int rings;
     
 
     /**
@@ -26,15 +27,17 @@ public class Target
      * @param radius the radius of the circle
      * 
      */
-    public Target(double x, double y, double radius)
+    public Target(double x, double y, double radius, int rings)
     {
         // initialise instance variables
         this.radius = radius;
-        this.radiusPerCircle = radius/5;
+        this.rings = rings;
+        this.radiusPerCircle = radius/rings;
         this.ctrX = x;
         this.ctrY = y;
     }
-
+
+
     /**
      * Returns Ellipse2D
      *
@@ -54,21 +57,44 @@ public class Target
         g2.fill(ellipse);
     }
     
+    public void makeOddRings(int rings, Color color1, Color color2, double radius, double ctrX, double ctrY, Graphics2D g2)
+    {
+        this.makeEllipse(color1, radius-radiusPerCircle*0, ctrX, ctrY, g2);
+        for(int i=1; i<=rings-1; i=i+2)
+        {
+            this.makeEllipse(color2, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
+            this.makeEllipse(color1, radius-radiusPerCircle*(i+1), ctrX, ctrY, g2);
+        }
+        //this.makeEllipse(color1, radius-radiusPerCircle*(rings), ctrX, ctrY, g2);
+    }
+    public void makeEvenRings(int rings, Color color1, Color color2, double radius, double ctrX, double ctrY, Graphics2D g2)
+    {
+       this.makeEllipse(color1, radius-radiusPerCircle*0, ctrX, ctrY, g2);
+        for(int i=1; i<=rings-1; i=i+2)
+        {
+            this.makeEllipse(color2, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
+            this.makeEllipse(color1, radius-radiusPerCircle*(i+1), ctrX, ctrY, g2);
+        }
+        this.makeEllipse(color2, radius-radiusPerCircle*(rings), ctrX, ctrY, g2);
+    }
+    
     /**
-     * Draws the car
+     * Draws the target
      * 
      * @param  g2   the graphics stuff
      * 
      */
-    public void draw(Graphics2D g2)
+    public void drawTarget(Graphics2D g2)
     {
-
-        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*0, ctrX, ctrY, g2);
-        this.makeEllipse(Color.WHITE, radius-radiusPerCircle*1, ctrX, ctrY, g2);
-        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*2, ctrX, ctrY, g2);
-        this.makeEllipse(Color.WHITE, radius-radiusPerCircle*3, ctrX, ctrY, g2);
-        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*4, ctrX, ctrY, g2);
+        if(rings%2 == 0)
+        {
+            this.makeEvenRings(5, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2);    
+        }
+        else
+        {
+            this.makeOddRings(5, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2);        
         
+        }
         
     }
 }
