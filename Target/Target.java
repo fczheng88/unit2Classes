@@ -2,6 +2,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.Color;
 
 /**
  * Target Class
@@ -12,8 +13,8 @@ import java.awt.geom.Point2D;
 public class Target
 {
     // instance variables - replace the example below with your own
-    private int x;
-    private int y;
+    private double ctrX;
+    private double ctrY;
     private double radius;
     private double radiusPerCircle;
     
@@ -25,14 +26,34 @@ public class Target
      * @param radius the radius of the circle
      * 
      */
-    public Target(int x, int y, double radius)
+    public Target(double x, double y, double radius)
     {
         // initialise instance variables
-        this.x = x;
-        this.y = y;
+        this.radius = radius;
         this.radiusPerCircle = radius/5;
+        this.ctrX = x;
+        this.ctrY = y;
     }
-
+
+    /**
+     * Returns Ellipse2D
+     *
+     * @param Color Color of ellipse
+     * @param  radius  radius of ellipse
+     * @param ctrX X coordinate of centre
+     * @param ctrY Y coordinate of centre
+     * @return  Ellipse2D Object
+     */
+    public void makeEllipse(Color color, double radius, double ctrX, double ctrY, Graphics2D g2)
+    {
+        // make corner x, y according to radius
+        double cornerX = ctrX-radius/2;
+        double cornerY = ctrY-radius/2;
+        Ellipse2D.Double ellipse = new Ellipse2D.Double(cornerX, cornerY, radius, radius);
+        g2.setPaint(color);
+        g2.fill(ellipse);
+    }
+    
     /**
      * Draws the car
      * 
@@ -41,16 +62,13 @@ public class Target
      */
     public void draw(Graphics2D g2)
     {
-        Ellipse2D.Double outerBlack = new Ellipse2D.Double(x, y, radius, radius);
-        Ellipse2D.Double bigWhite = new Ellipse2D.Double(x, y, radius-radiusPerCircle, radius-radiusPerCircle);
-        Ellipse2D.Double midBlack = new Ellipse2D.Double(x, y, radius-radiusPerCircle*2, radius-radiusPerCircle*2);
-        Ellipse2D.Double smallBlack = new Ellipse2D.Double(x, y, radius-radiusPerCircle*3, radius-radiusPerCircle*3);
-        Ellipse2D.Double innerBlack = new Ellipse2D.Double(x, y, radius-radiusPerCircle*4, radius-radiusPerCircle*4);
+
+        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*0, ctrX, ctrY, g2);
+        this.makeEllipse(Color.WHITE, radius-radiusPerCircle*1, ctrX, ctrY, g2);
+        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*2, ctrX, ctrY, g2);
+        this.makeEllipse(Color.WHITE, radius-radiusPerCircle*3, ctrX, ctrY, g2);
+        this.makeEllipse(Color.BLACK, radius-radiusPerCircle*4, ctrX, ctrY, g2);
         
-        g2.draw(outerBlack);
-        g2.draw(bigWhite);
-        g2.draw(midBlack);
-        g2.draw(smallBlack);
-        g2.draw(innerBlack);
+        
     }
 }

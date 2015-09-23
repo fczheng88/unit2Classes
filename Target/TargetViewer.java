@@ -17,16 +17,16 @@ public class TargetViewer
     {
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
     
-        int screenX = (int) screensize.getWidth();
-        int screenY = (int) screensize.getHeight();
+        double screenX =  screensize.getWidth();
+        double screenY =  screensize.getHeight();
         
         
         JFrame frame = new JFrame();
-        frame.setSize(screenX-60, screenY-60);
+        frame.setSize((int) screenX, (int) screenY-60);
         frame.setTitle("Target!!!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        TargetComponent component = new TargetComponent();
+        TargetComponent component = new TargetComponent(screenX, screenY);
         frame.add(component);
         
         frame.setVisible(true);
