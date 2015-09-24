@@ -23,7 +23,7 @@ public class TargetViewer
         
         double ctrX = screenX/2;
         double ctrY = (screenY-60)/2;
-        double radius = (screenY-60)/2;
+        double radius = (screenY-60);
     
         
         JFrame frame = new JFrame();

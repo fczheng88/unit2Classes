@@ -27,15 +27,17 @@ public class TargetComponent extends JComponent
 
 
         Graphics2D g2 = (Graphics2D) g;
-        Target target = new Target(ctrX,ctrY,radius, 3);
+        Target target = new Target(ctrX,ctrY,radius/2, 25);
         target.drawTarget(g2);
-        Target target1 = new Target(ctrX/2+ctrX, ctrY/2, radius/4, 5);
+        
+        
+        Target target1 = new Target(ctrX/2+ctrX, ctrY/2, radius/4, 10);
         target1.drawTarget(g2);
-        Target target2 = new Target(ctrX/2, ctrY/2+ctrY, radius/4, 5);
+        Target target2 = new Target(ctrX/2, ctrY/2+ctrY, radius/4, 15);
         target2.drawTarget(g2);
-        Target target3 = new Target(ctrX/2, ctrY/2, radius/4, 5);
+        Target target3 = new Target(ctrX/2, ctrY/2, radius/4, 20);
         target3.drawTarget(g2);
-        Target target4 = new Target(ctrX/2+ctrX, ctrY/2+ctrY, radius/4, 5);
+        Target target4 = new Target(ctrX/2+ctrX, ctrY/2+ctrY, radius/4, 25);
         target4.drawTarget(g2);
         
     

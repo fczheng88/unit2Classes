@@ -45,7 +45,9 @@ public class Target
      * @param  radius  radius of ellipse
      * @param ctrX X coordinate of centre
      * @param ctrY Y coordinate of centre
-     * @return  Ellipse2D Object
+     * @param Graphics2D graphics thingy
+     * 
+     * 
      */
     public void makeEllipse(Color color, double radius, double ctrX, double ctrY, Graphics2D g2)
     {
@@ -57,6 +59,19 @@ public class Target
         g2.fill(ellipse);
     }
     
+    /**
+     * Returns Ellipse2D
+     *
+     * @param int rings in the target
+     * @param Color color1 centre color
+     * @param Color color2 alternate color
+     * @param radius radius of ellipse
+     * @param ctrX X coordinate of centre
+     * @param ctrY Y coordinate of centre
+     * @param Graphics2D graphics thingy
+     * 
+     * 
+     */
     public void makeOddRings(int rings, Color color1, Color color2, double radius, double ctrX, double ctrY, Graphics2D g2)
     {
         this.makeEllipse(color1, radius-radiusPerCircle*0, ctrX, ctrY, g2);
@@ -65,17 +80,48 @@ public class Target
             this.makeEllipse(color2, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
             this.makeEllipse(color1, radius-radiusPerCircle*(i+1), ctrX, ctrY, g2);
         }
-        //this.makeEllipse(color1, radius-radiusPerCircle*(rings), ctrX, ctrY, g2);
+        
     }
-    public void makeEvenRings(int rings, Color color1, Color color2, double radius, double ctrX, double ctrY, Graphics2D g2)
+    
+    
+    /**
+     * Returns Ellipse2D
+     *
+     * @param int rings in the target
+     * @param Color color1 centre color
+     * @param Color color2 alternate color
+     * @param radius radius of ellipse
+     * @param ctrX X coordinate of centre
+     * @param ctrY Y coordinate of centre
+     * @param Graphics2D graphics thingy
+     * @param boolean oppColours - whether the centre ring colour should be reversed
+     * 
+     * 
+     */
+    public void makeEvenRings(int rings, Color color1, Color color2, double radius, double ctrX, double ctrY, Graphics2D g2, boolean oppColours)
     {
-       this.makeEllipse(color1, radius-radiusPerCircle*0, ctrX, ctrY, g2);
-        for(int i=1; i<=rings-1; i=i+2)
+        if(oppColours)
         {
-            this.makeEllipse(color2, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
-            this.makeEllipse(color1, radius-radiusPerCircle*(i+1), ctrX, ctrY, g2);
+            for(int i=1; i<=rings; i=i+2)
+            {   
+                // color1 coloured inner ring - color scheme reversed
+                this.makeEllipse(color1, radius-radiusPerCircle*(i-1), ctrX, ctrY, g2);
+                this.makeEllipse(color2, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
+                
+            }
         }
-        this.makeEllipse(color2, radius-radiusPerCircle*(rings), ctrX, ctrY, g2);
+        else
+        {
+            for(int i=1; i<=rings; i=i+2)
+            {   
+                //color2 coloured circle for outer ring
+                this.makeEllipse(color2, radius-radiusPerCircle*(i-1), ctrX, ctrY, g2);
+                this.makeEllipse(color1, radius-radiusPerCircle*(i), ctrX, ctrY, g2);
+                
+            }
+        }
+        
+        
     }
     
     /**
@@ -88,11 +134,12 @@ public class Target
     {
         if(rings%2 == 0)
         {
-            this.makeEvenRings(5, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2);    
+            //see method above for details...
+            this.makeEvenRings(this.rings, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2, true);    
         }
         else
         {
-            this.makeOddRings(5, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2);        
+            this.makeOddRings(this.rings, Color.BLACK, Color.WHITE, radius, ctrX, ctrY, g2);        
         
         }
         
