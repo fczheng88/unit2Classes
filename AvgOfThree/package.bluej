@@ -2,9 +2,15 @@
 objectbench.height=100
 objectbench.width=658
 package.editor.height=400
+<<<<<<< HEAD
 package.editor.width=560
 package.editor.x=719
 package.editor.y=59
+=======
+package.editor.width=564
+package.editor.x=30
+package.editor.y=30
+>>>>>>> origin/master
 package.numDependencies=0
 package.numTargets=1
 package.showExtends=true
@@ -25,5 +31,5 @@ target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
 target1.width=100
-target1.x=70
-target1.y=10
+target1.x=80
+target1.y=20
