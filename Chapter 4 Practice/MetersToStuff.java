@@ -11,13 +11,12 @@ public class MetersToStuff
 {
     // instance variables - replace the example below with your own
     
-    public static final double METERS_TO_MILES = 0.000621371;
-    public static final double MILES_TO_FEET = 5280.0;
-    public static final double FEET_TO_INCHES = 1.0/12.0;
+    public static final double METERS_TO_MILES = 156.0;
+    public static final double MILES_TO_FEET = (1.0/5280.0);
+    public static final double FEET_TO_INCHES = (1.0/12.0);
     
     public static void main(String[] args)
     {
-        System.out.print("Meters: ");
         Scanner s = new Scanner(System.in);
         double meters = s.nextDouble();
         
