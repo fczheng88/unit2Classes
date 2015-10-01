@@ -1,7 +1,4 @@
 import javax.swing.JFrame;
-//Next two for sizing window
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 /**
  * Class that contains the main method for the program and creates the frame containing the component.
@@ -11,14 +8,9 @@ import java.awt.Dimension;
  */
 public class CityscapeViewer
 {
-    //Screen size:
-    static final Dimension SCREEN_DIM = Toolkit.getDefaultToolkit().getScreenSize();
-    static final int SCREEN_X = (int) SCREEN_DIM.getWidth();
-    static final int SCREEN_Y = (int) SCREEN_DIM.getHeight();
-    
     // the cityscape will be animated for 60 seconds
     static final int ANIMATION_TIME_IN_SECONDS = 60;
-    
+   
     /**
      * main method for the program which creates and configures the frame for the program
      *
@@ -28,7 +20,7 @@ public class CityscapeViewer
         // create and configure the frame (window) for the program
         JFrame frame = new JFrame();
         
-        frame.setSize(SCREEN_X /* x */, SCREEN_Y-60 /* y, allows for taskbar and such */);
+        frame.setSize(800 /* x */, 600 /* y */);
         frame.setTitle("Cityscape");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -45,12 +37,10 @@ public class CityscapeViewer
         //  component.
         frame.setVisible(true);
         
-      
-        
         // animate the cityscape
         for( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ )
         {
-            component.nextFrame(seconds);
+            component.nextFrame();
             Thread.sleep( 1000 );
         }
         
