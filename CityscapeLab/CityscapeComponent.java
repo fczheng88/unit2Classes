@@ -11,6 +11,7 @@ import javax.swing.JComponent;
  */
 public class CityscapeComponent extends JComponent
 {
+    private int SCREEN_X, SCREEN_Y;
     // define the objects in your Cityscape as instance variables
     // ...
     
@@ -18,7 +19,13 @@ public class CityscapeComponent extends JComponent
     
     // define the CityscapeComponent contructor and intiailize all instance variables
     // ...
-    
+    public CityscapeComponent(int screenX, int screenY /*need more stuffs*/)
+    {
+        this.SCREEN_X = screenX;
+        this.SCREEN_Y = screenY;
+        
+        //////////*****////////    
+    }
     
     /**
      * This method is invoked by the Java Run-Time whenever the component needs to be redrawn.
@@ -32,7 +39,8 @@ public class CityscapeComponent extends JComponent
         // invoke the draw method on each object in your Cityscape
         // ...
         
-        
+        MoonSun moonSun = new MoonSun(SCREEN_X, SCREEN_Y);
+        moonSun.drawMoonSun(g2);
     }
     
     /**
