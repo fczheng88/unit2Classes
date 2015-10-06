@@ -17,17 +17,16 @@ public class MoonSun
     private int SCREEN_X, SCREEN_Y;
     private TimeOfDay timeStuff = new TimeOfDay();
     
-    private final static int SECONDS_IN_DAY = 24*60*60;
+    private final static int MINUTES_IN_DAY = 24*60;
     /**
      * Constructor for objects of class Moon
      */
-    public MoonSun(int screenX, int screenY)
+    public MoonSun()
     {
         this.hour = timeStuff.getHour();
         this.minute = timeStuff.getMinute();
         this.second = timeStuff.getSecond();
-        this.SCREEN_X = screenX;
-        this.SCREEN_Y = screenY;
+        
         System.out.println("MoonSun Init");
         System.out.println(SCREEN_X);
         System.out.println(SCREEN_Y);
@@ -59,42 +58,49 @@ public class MoonSun
     }
     public Point positionCalc()
     {   
-        int hour = timeStuff.getHour();
-        int minute = timeStuff.getMinute();
-        int second = timeStuff.getSecond();
-        
-        int secondDisplacement = Math.abs(12-hour)*60*60+(60-minute)*60+second;
-        long xPixelsPerMove = SCREEN_X/SECONDS_IN_DAY/2;
-        long yPixelsPerMove = SCREEN_Y/4/SECONDS_IN_DAY/2;
-        int x = (int) xPixelsPerMove*secondDisplacement;
-        int y;
-        if(secondDisplacement <= SECONDS_IN_DAY/4)
+        int currentMinutes;
+        int locHour = this.hour;
+        if(hour>=12 && hour<24)
         {
-            y = (int) yPixelsPerMove*secondDisplacement;
+            locHour-=12;
+            currentMinutes = locHour*60 + minute;
         }
         else
         {
-            y = (int) (SCREEN_Y/4-yPixelsPerMove*secondDisplacement);
+            currentMinutes = locHour*60 + minute;
         }
-        Point point = new Point(x, y);
+        System.out.println(currentMinutes);
+        
+        
+        double x = (double) SCREEN_X*((double) currentMinutes/(double) MINUTES_IN_DAY/2);
+        double y = (1.0/(double) SCREEN_X)*Math.pow((x-(SCREEN_X/2.0)), 2)- (double) (SCREEN_Y/4.0);
+        
+        Point point = new Point((int) x, (int)  y);
+        System.out.println(point);
         return point;
     }
-    public void drawMoonSun(Graphics2D g2)  
+    public void updateMoonSun(int hour)
     {
-        System.out.println("DrawMoonSun");
-        System.out.println(timeStuff.getHour());
-        int hour = timeStuff.getHour();
+        
+        this.hour = hour%24;
+        System.out.println(this.hour);
+    }
+    public void drawMoonSun(Graphics2D g2, int screenX, int screenY)  
+    {
+        this.SCREEN_X = screenX;
+        this.SCREEN_Y = screenY;
+        int hour = this.hour;
         int centerX = (int) this.positionCalc().getX();
         int centerY = (int) this.positionCalc().getY();
         if(hour<18 && hour>6)
         {
-            this.makeCircle(centerX, centerY, 500, true, g2);
-            System.out.println("Sun");
+            this.makeCircle(centerX, centerY, 50, true, g2);
+            
         }
         else
         {
-            this.makeCircle(centerX, centerY, 500, false, g2);
-            System.out.println("Moon");
+            this.makeCircle(centerX, centerY, 50, false, g2);
+            
         }
     }
 }

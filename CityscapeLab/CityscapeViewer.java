@@ -12,7 +12,7 @@ import java.awt.Dimension;
 public class CityscapeViewer
 {
     // the cityscape will be animated for 60 seconds
-    static final int ANIMATION_TIME_IN_SECONDS = 60;
+    static final int ANIMATION_TIME_IN_SECONDS = 6000;
     static final Dimension SCREEN_DIM = Toolkit.getDefaultToolkit().getScreenSize();
     
     static final int SCREEN_X = (int) SCREEN_DIM.getWidth();
@@ -49,7 +49,7 @@ public class CityscapeViewer
         // animate the cityscape
         for( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ )
         {
-            component.nextFrame();
+            component.nextFrame(seconds);
             Thread.sleep( 1000 );
         }
         

@@ -14,7 +14,7 @@ public class CityscapeComponent extends JComponent
     private int SCREEN_X, SCREEN_Y;
     // define the objects in your Cityscape as instance variables
     // ...
-    
+    MoonSun moonSun = new MoonSun();
     
     
     // define the CityscapeComponent contructor and intiailize all instance variables
@@ -39,19 +39,19 @@ public class CityscapeComponent extends JComponent
         // invoke the draw method on each object in your Cityscape
         // ...
         
-        MoonSun moonSun = new MoonSun(SCREEN_X, SCREEN_Y);
-        moonSun.drawMoonSun(g2);
+        
+        moonSun.drawMoonSun(g2, SCREEN_X, SCREEN_Y);
     }
     
     /**
      * Animate the cityscape by updating the objects such that they appear to be animated when they are next drawn.
      *
      */
-    public void nextFrame()
+    public void nextFrame(int seconds)
     {
         // update the objects in the cityscape so they are animated
         // ...
-        
+        moonSun.updateMoonSun(seconds);
         
         
         // request that the Java Runtime repaints this component by invoking its paintComponent method
