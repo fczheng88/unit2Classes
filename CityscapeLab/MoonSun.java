@@ -46,15 +46,14 @@ public class MoonSun
         if(isSun == true)
         {
             g2.setPaint(Color.YELLOW);
-            System.out.println("yellow");
         }
         else
         {
-            g2.setPaint(Color.BLACK);
+            g2.setPaint(Color.WHITE);
         }
         g2.fill(circle);
         g2.draw(circle);
-        System.out.println("drawn");
+            
     }
     public Point positionCalc()
     {   
@@ -75,10 +74,7 @@ public class MoonSun
             locHour+=6;
             currentMinutes = locHour*60 + minute;
         }
-        System.out.println(currentMinutes);
-        
-        
-        
+                
         double x = (double) SCREEN_X*((double) currentMinutes)/((double) MINUTES_IN_DAY/2);
         double y = 0.5*(1.0/(double) SCREEN_X)*Math.pow((x-(SCREEN_X/2.0)), 2)+(0.125*SCREEN_Y);
         
@@ -86,38 +82,23 @@ public class MoonSun
         System.out.println(point);
         return point;
     }
-    public void updateMoonSun(int minute)
+    public void updateMoonSun()//int minute)
     {
         
-        this.minute = to60Minute(minute);
+        
+        addMinute();
         System.out.println(this.minute);
         System.out.println(this.hour);
     }
-    public int to24Hour(int hour)
+    public void addMinute()
     {
-        if(hour>=24)
-        {
-            return hour%24;
-        }
-        else
-        {
-            return hour;
-        }
-    }
-    public int to60Minute(int minute)
-    {
+        int minute = this.minute +1;
+        this.minute = minute%60;
         if(minute >= 60)
         {
-            
-            this.minute =-60;
-            this.hour = to24Hour(this.hour+1);
-            return minute%60;
+            this.hour = (this.hour+1)%24;
         }
-        else
-        {
-            return minute;
-        }
-        
+               
     }
     public void drawMoonSun(Graphics2D g2, int screenX, int screenY)  
     {

@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
-
+import java.awt.Color;
 /**
  * Class that creates instances of the classes that comprise the cityscape and delegates drawing the
  *  cityscape to these object.
@@ -15,7 +15,7 @@ public class CityscapeComponent extends JComponent
     // define the objects in your Cityscape as instance variables
     // ...
     MoonSun moonSun = new MoonSun();
-    
+    GradientBackground background = new GradientBackground();
     
     // define the CityscapeComponent contructor and intiailize all instance variables
     // ...
@@ -40,6 +40,8 @@ public class CityscapeComponent extends JComponent
         // ...
         
         
+        
+        background.paintBackground(g2, Color.BLUE, Color.RED, SCREEN_X, SCREEN_Y);
         moonSun.drawMoonSun(g2, SCREEN_X, SCREEN_Y);
     }
     
@@ -51,7 +53,7 @@ public class CityscapeComponent extends JComponent
     {
         // update the objects in the cityscape so they are animated
         // ...
-        moonSun.updateMoonSun(seconds);
+        moonSun.updateMoonSun();//seconds);
         
         
         // request that the Java Runtime repaints this component by invoking its paintComponent method
