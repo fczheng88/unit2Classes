@@ -16,6 +16,8 @@ public class CityscapeComponent extends JComponent
     // ...
     MoonSun moonSun = new MoonSun();
     GradientBackground background = new GradientBackground();
+    TwoWindowBldg building1 = new TwoWindowBldg();
+    
     
     // define the CityscapeComponent contructor and intiailize all instance variables
     // ...
@@ -43,6 +45,7 @@ public class CityscapeComponent extends JComponent
         
         background.paintBackground(g2, Color.BLUE, Color.RED, SCREEN_X, SCREEN_Y);
         moonSun.drawMoonSun(g2, SCREEN_X, SCREEN_Y);
+        building1.drawBuilding(g2, 7, 5, SCREEN_X, SCREEN_Y);
     }
     
     /**
