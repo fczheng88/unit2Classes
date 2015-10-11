@@ -10,23 +10,30 @@ public class GradientBackground
 {
     private Color color1, color2;
     private int SCREEN_X, SCREEN_Y;
-    public GradientBackground()
+    
+    public GradientBackground( int screenX, int screenY)
     {        
+        SCREEN_X = screenX;
+        SCREEN_Y = screenY;
+        color1 = Color.RED;
+        color2 = Color.BLUE;
     }
-    public void paintBackground(Graphics2D g2, Color color1, Color color2, int screenX, int screenY)
+    public void paintBackground(Graphics2D g2)
     {
-        this.color1 = color1;
-        this.color2 = color2;
-        this.SCREEN_X = screenX;
-        this.SCREEN_Y = screenY;
         
-        Rectangle background = new Rectangle(0,0,SCREEN_X, SCREEN_Y);
+        
+        
+        Rectangle background = new Rectangle(0,0,SCREEN_X, SCREEN_Y*3/4);
         g2.setPaint(new GradientPaint(SCREEN_X/2 ,0, color1, SCREEN_X/2, SCREEN_Y/2, color2));
         
         g2.fill(background);
         g2.draw(background);
         
     }
-
+    public void updateByTime(TimeOfDay currentTime)
+    {
+        color1 = Color.RED;
+        color2 = Color.BLUE;
+    }
 
 }
