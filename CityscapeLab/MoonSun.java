@@ -82,7 +82,7 @@ public class MoonSun
         
         return point;
     }
-        public void drawMoonSun(Graphics2D g2)  
+    public void drawMoonSun(Graphics2D g2)  
     {
                
         makeCircle(ctrPosition, 50, g2);
@@ -92,6 +92,10 @@ public class MoonSun
     {
         isSun = currentTime.isDay();
         ctrPosition = positionCalc(currentTime);
+    }
+    public Point getCenter()
+    {
+        return ctrPosition;
     }
 }
 

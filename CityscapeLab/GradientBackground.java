@@ -15,8 +15,8 @@ public class GradientBackground
     {        
         SCREEN_X = screenX;
         SCREEN_Y = screenY;
-        color1 = Color.RED;
-        color2 = Color.BLUE;
+        color1 = Color.BLUE;
+        color2 = Color.RED;
     }
     public void paintBackground(Graphics2D g2)
     {
@@ -32,8 +32,9 @@ public class GradientBackground
     }
     public void updateByTime(TimeOfDay currentTime)
     {
-        color1 = Color.RED;
-        color2 = Color.BLUE;
+        color1 = Color.BLUE;
+        color2 = Color.RED;
+        
     }
 
 }

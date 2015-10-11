@@ -22,6 +22,9 @@ public class CityscapeComponent extends JComponent
     Building building2;
     Building building3;
     
+    TimeDisplay timeDisp;
+    
+    
     Road road;
     
     
@@ -37,6 +40,7 @@ public class CityscapeComponent extends JComponent
         building2 = new Building(3,2, SCREEN_X, SCREEN_Y);
         building3 = new Building(2,4, SCREEN_X, SCREEN_Y);
         road = new Road(SCREEN_X, SCREEN_Y);
+        timeDisp = new TimeDisplay();
         //////////*****////////    
     }
     
@@ -59,7 +63,7 @@ public class CityscapeComponent extends JComponent
         building1.drawBuilding(g2, new Point(200, (int)(SCREEN_Y*0.75)));
         building2.drawBuilding(g2, new Point((int)building1.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
         building3.drawBuilding(g2, new Point((int)building2.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
-        
+        timeDisp.drawTimeInSun(g2);
         road.drawRoad(g2);
     }
     
@@ -76,6 +80,7 @@ public class CityscapeComponent extends JComponent
         building1.updateByTime(currentTime);
         building2.updateByTime(currentTime);
         building3.updateByTime(currentTime);
+        timeDisp.updateByTime(currentTime, moonSun);
         // request that the Java Runtime repaints this component by invoking its paintComponent method
         repaint();
     }
