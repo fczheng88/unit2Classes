@@ -7,13 +7,12 @@ import java.util.Scanner;
 /**
  * Class that contains the main method for the program and creates the frame containing the component.
  * 
- * @author @gcschmit
- * @version 18 July 2014
+ * @author Felix Zheng
+ * @version 1
  */
 public class CityscapeViewer
 { 
-    // the cityscape will be animated for 60 seconds
-    static final int ANIMATION_TIME_IN_SECONDS = 60000000;
+    
     static final Dimension SCREEN_DIM = Toolkit.getDefaultToolkit().getScreenSize();
     
     static final int SCREEN_X = (int) SCREEN_DIM.getWidth();
@@ -45,8 +44,7 @@ public class CityscapeViewer
         {
             System.out.print("\n\nPlease select the speed of the animation - \ninput F for fast, M for medium, and S for slow: ");
             String opt = s.next();
-            
-           
+                     
             
             if(opt.toLowerCase().equals("s"))
             {
@@ -62,13 +60,13 @@ public class CityscapeViewer
             }
             else
             {
-                System.out.println("\nu is fael. proegrim wil fael.\nTRY AGIN PLS\n");
+                System.out.println("\nInvalid input!\n\nPlease Try Again!\n\n\n");
                 
             }
         }
         
         // a frame contains a single component; create the Cityscape component and add it to the frame
-        CityscapeComponent component = new CityscapeComponent( /* pass the user-specified value */ SCREEN_X, SCREEN_Y);
+        CityscapeComponent component = new CityscapeComponent( SCREEN_X, SCREEN_Y);
         frame.add(component);
         
         // make the frame visible which will result in the paintComponent method being invoked on the
@@ -76,7 +74,7 @@ public class CityscapeViewer
         frame.setVisible(true);
         
         // animate the cityscape
-        while(true)//( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ )
+        while(true)//( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ ) [old code]
         {
             currentTime.addMinute();
             component.nextFrame(currentTime);
