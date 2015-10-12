@@ -28,14 +28,18 @@ public class TimeDisplay
     /**
      * An example of a method - replace this comment with your own
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param  g2 the graphics object
      */
     public void drawTimeInSun(Graphics2D g2)
     {
         g2.setColor(Color.WHITE);
         g2.drawString(timeToDraw, (int) location.getX(), (int) location.getY());//adlfjasldsfjklaskjdflkasf);
     }
+    /**
+     * Updates the object before repaint()
+     * @param currentTime for recalling the time
+     * @param moonSun to place the object correctly
+     */
     public void updateByTime(TimeOfDay currentTime, MoonSun moonSun)
     {
         hour = currentTime.getHour();

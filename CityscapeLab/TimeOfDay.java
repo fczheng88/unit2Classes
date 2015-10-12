@@ -1,9 +1,9 @@
 import java.util.Calendar;
 /**
- * Write a description of class TimeOfDay here.
+ * Class to keep track of time operations
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zheng
+ * @version 1
  */
 public class TimeOfDay
 {
@@ -22,19 +22,36 @@ public class TimeOfDay
         this.minute = calendar.get(Calendar.MINUTE);
         this.second = calendar.get(Calendar.SECOND);
     }
-    
+    /**
+     * Alternate constructor for TimeOfDay
+     * @param hours sets the hour
+     * @param minutes sets the minute
+     * @param seconds sets the second
+     */
     public TimeOfDay(int hours, int minutes, int seconds)
     {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
     }
-
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Method to find sunrise/sunset time (currently fixed values, returns hour)
+     * @param isSunrise If time of sunrise is needed, true should be passed. For sunset, false should be given.
+     * @return The hour of sunrise or sunset
+     */
+    public int getRiseSet(boolean isSunrise)
+    {
+        if(isSunrise)
+        {
+            return 6;
+        }
+        else
+        {
+            return 18;
+        }
+    }
+    /**
+     * Called to synce time in TimeOfDay with real-world time 
      */
     public void updateTime()
     {
@@ -43,7 +60,9 @@ public class TimeOfDay
         this.minute = calendar.get(Calendar.MINUTE);
         this.second = calendar.get(Calendar.SECOND);
     }
-    
+    /**
+     * Called to update the time before repaint() is called. Adds one minute.
+     */
     public void addMinute()
     {
         int minute = this.minute +1;
@@ -53,7 +72,11 @@ public class TimeOfDay
             this.hour = (this.hour+1)%24;
         }
                
-    } 
+    }
+    /**
+     * Method to say whether 0601 or 1801 has been reached(symbolizes change of night=>day or day=> night)
+     * @return true if the conditions are met and false if the conditions are not met
+     */
     public boolean isSwitchedDayNight()
     {
         if(hour == 6 && minute == 1)
@@ -63,6 +86,10 @@ public class TimeOfDay
         else
         {return false;}
     }
+    /**
+     * Method to return whether it is day or night
+     * @return true if it is day, false if it is night
+     */
     public boolean isDay()
     {
         if( hour>=6 && hour<18)
@@ -74,6 +101,10 @@ public class TimeOfDay
             return false;
         }
     }
+    /**
+     * same as isDay() but return values are reversed
+     * @return true if it is night, false if it is day
+     */
     public boolean isNight()
     {
         if( hour>=6 && hour<18)
@@ -85,16 +116,29 @@ public class TimeOfDay
             return true;
         }
     }
+    /**
+     * Method to find the hour
+     * @return the current hour
+     */
     public int getHour()
     {
         return this.hour;
     }
+    /**
+     * Method to find the minute
+     * @return the current minute
+     */
     public int getMinute()
     {
         return this.minute;
     }
+    /**
+     * Method to find the second
+     * @return the current second
+     */
     public int getSecond()
     {
         return this.second;
     }
+    
 }

@@ -5,10 +5,10 @@ import java.awt.geom.Point2D;
 import java.awt.Point;
 import java.awt.Color;
 /**
- * Write a description of class Moon here.
+ * Creates, draws and animates moon/sun
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zheng 
+ * @version 1
  */
 public class MoonSun
 {
@@ -23,6 +23,8 @@ public class MoonSun
     private final static int MINUTES_IN_DAY = 24*60;
     /**
      * Constructor for objects of class Moon
+     * @param screenX the width of the screen
+     * @param screenY the height of the screen
      */
     public MoonSun(int screenX, int screenY)
     {
@@ -32,10 +34,12 @@ public class MoonSun
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Draws a circle based on parameters
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param  ctrPos the point to use as the center of the circle
+     * @param radius the radius of the circle
+     * @param g2 the graphics stuff
+     * 
      */
     public void makeCircle(Point ctrPos, int radius, Graphics2D g2)
     {
@@ -55,24 +59,29 @@ public class MoonSun
         g2.draw(circle);
             
     }
-    public Point positionCalc(TimeOfDay timeStuff)
+    /**
+     * Calculates the position of the moon/sun based on the time - 0600 sunrise and 1800 sunset
+     * @param currentTime the time object that sets times
+     */
+    public Point positionCalc(TimeOfDay currentTime)
     {   
         int currentMinutes;
-        int locHour = timeStuff.getHour();
-        if(timeStuff.isDay())
+        int locHour = currentTime.getHour();
+        //the following if structure converts 24 hour time to 12 hour time and has an offset for sunrise/sunset
+        if(currentTime.isDay())
         {
             locHour-=6;
-            currentMinutes = locHour*60 + timeStuff.getMinute();
+            currentMinutes = locHour*60 + currentTime.getMinute();
         }
-        else if(timeStuff.getHour()>=18&&timeStuff.getHour()<24)
+        else if(currentTime.getHour()>=currentTime.getRiseSet(false)&&currentTime.getHour()<24)
         {
             locHour-=18;
-            currentMinutes = locHour*60 + timeStuff.getMinute();
+            currentMinutes = locHour*60 + currentTime.getMinute();
         }
         else
         {
             locHour+=6;
-            currentMinutes = locHour*60 + timeStuff.getMinute();
+            currentMinutes = locHour*60 + currentTime.getMinute();
         }
                 
         double x = (double) SCREEN_X*((double) currentMinutes)/((double) MINUTES_IN_DAY/2);
@@ -82,17 +91,29 @@ public class MoonSun
         
         return point;
     }
+    /**
+     * Calls the makeCircle function to draw the circle, passing necessary params
+     * @param g2 the graphics stuff
+     */
     public void drawMoonSun(Graphics2D g2)  
     {
                
         makeCircle(ctrPosition, 50, g2);
        
     }
+    /**
+     * Updates the object based on time set by currentTime
+     * @param currentTime supplies the time object for calculations
+     */
     public void updateByTime(TimeOfDay currentTime)
     {
         isSun = currentTime.isDay();
         ctrPosition = positionCalc(currentTime);
     }
+    /**
+     * Returns center position of sun/moon as point
+     * @return Point the center (x,y) of the sun or moon
+     */
     public Point getCenter()
     {
         return ctrPosition;

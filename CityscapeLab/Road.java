@@ -6,10 +6,10 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.GradientPaint;
 /**
- * Write a description of class Road here.
+ * For drawing the road
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zheng 
+ * @version 1
  */
 public class Road
 {
@@ -18,6 +18,8 @@ public class Road
 
     /**
      * Constructor for objects of class Road
+     * @param screenX The width of the frame/screen
+     * @param screenY The height of the frame/screen
      */
     public Road(int screenX, int screenY)
     {
@@ -27,20 +29,20 @@ public class Road
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Draws the road when called
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param  g2   the graphics object
+     * 
      */
     public void drawRoad(Graphics2D g2)
     {
         
         
-        Rectangle background = new Rectangle(0,SCREEN_Y*3/4,SCREEN_X,SCREEN_Y);
+        Rectangle background = new Rectangle(0,SCREEN_Y*3/4,SCREEN_X,SCREEN_Y/4);
         g2.setPaint(Color.BLACK);
-        
         g2.fill(background);
         g2.draw(background);
+        
         
     }
 }

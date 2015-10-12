@@ -5,12 +5,22 @@ import java.awt.geom.Point2D;
 import java.awt.Point;
 import java.awt.Color;
 import java.awt.GradientPaint;
-
+/**
+ * Creates the background using GradientPaint
+ * 
+ * @author Felix Zheng 
+ * @version 1
+ */
 public class GradientBackground
 {
     private Color color1, color2;
     private int SCREEN_X, SCREEN_Y;
-    
+    /**
+     * Constructor
+     * 
+     * @param screenX The width of the frame/screen
+     * @param screenY The height of the frame/screen
+     */
     public GradientBackground( int screenX, int screenY)
     {        
         SCREEN_X = screenX;
@@ -18,6 +28,12 @@ public class GradientBackground
         color1 = Color.BLUE;
         color2 = Color.RED;
     }
+    /**
+     * Paint the gradient background
+     * 
+     * @param g2 The graphics object for painting/drawing
+     */
+    
     public void paintBackground(Graphics2D g2)
     {
         
@@ -30,11 +46,52 @@ public class GradientBackground
         g2.draw(background);
         
     }
+    /**
+     * Updates the background for repaint() based on day/night.
+     * @param currentTime The time object needed to call certain methods on for proper updating.
+     * 
+     */
     public void updateByTime(TimeOfDay currentTime)
     {
-        color1 = Color.BLUE;
-        color2 = Color.RED;
-        
+        //         /*--------------- Failed first attempt at sunrise/set, please ignore----------------------
+        //         //sun rising
+        //         if(currentTime.getHour()>currentTime.getRiseSet(true)&&currentTime.getHour()<=currentTime.getRiseSet(true)+3)
+        //         {
+        //             color1 = Color.BLUE.brighter().brighter().brighter();
+        //             color2 = new Color(color2.getRed()-1, 0, color2.getBlue()+1);
+        //         }
+        //         //sun setting
+        //         else if(currentTime.getHour()>=currentTime.getRiseSet(false)-3 && currentTime.getHour()<=currentTime.getRiseSet(false))
+        //         {
+        //             color1 = Color.BLUE;
+        //             color2 = new Color(color2.getRed()+1,  0, color2.getBlue()- 1);
+        //         }
+        //         //presunrise sun rising
+        //         else if(currentTime.getHour()<currentTime.getRiseSet(true)&&currentTime.getHour()>=currentTime.getRiseSet(true)-3)
+        //         {
+        //             color1 = Color.BLACK;
+        //             color2 = new Color(color2.getRed()+1, 0, color2.getBlue()-1);
+        //         }
+        //         //postsunset sun setting
+        //         else if(currentTime.getHour()<=currentTime.getRiseSet(false)+3 && currentTime.getHour()>=currentTime.getRiseSet(false))
+        //         {
+        //             color1 = Color.BLACK;
+        //             color2 = new Color(color2.getRed()-1,  0, color2.getBlue()- 1);
+        //         }
+        //         //night
+        //         else ----------------------------see message above-------------------*/
+        if(currentTime.getHour()<currentTime.getRiseSet(true) || currentTime.getHour()>=currentTime.getRiseSet(false))
+        {
+            color1 = new Color(25,25,112);
+            color2 = color1;
+        }
+        //day
+        else
+        {
+            color1 = new Color(135, 206, 250) ;
+            color2 = color1;
+        }
+                
     }
 
 }

@@ -8,10 +8,10 @@ import java.util.Random;
 import java.util.Arrays;
 
 /**
- * Write a description of class TwoWindowBldg here.
+ * Draws buildings based on number of windows wide/high
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zheng 
+ * @version 1
  */
 public class Building
 {
@@ -28,7 +28,10 @@ public class Building
     /**
      * Constructor for objects of class TwoWindowBldg
      * 
-     * @param int height the height of the building in windows
+     * @param numWinAcross the number of windows across
+     * @param numWinDown the number of windows down
+     * @param scrX the screen width
+     * @param scrY the screen height
      */
     public Building(int numWinAcross, int numWinDown,int scrX, int scrY)
     {
@@ -41,10 +44,15 @@ public class Building
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Creates and draws a rectangle based on parameters
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param  color the color of the rectangle
+     * @param cornerX the X coordinate of the top left corner of the rectangle
+     * @param cornerY the Y coordinate of the top right corner of the rectangle
+     * @param width the width of the rectangle
+     * @param height the height of the rectangle
+     * @param g2 the graphics object to draw the rectangle
+     * 
      */
     public void makeRect(Color color, int cornerX, int cornerY, int width, int height, Graphics2D g2)
     {
@@ -54,10 +62,20 @@ public class Building
         g2.fill(rectangle);
         g2.draw(rectangle);
     }
+    /**
+     * Returns the lower right corner of the building
+     * 
+     * @return the lower left corner of the building
+     */
     public Point getLowerRight()
     {
         return new Point((int)lowerLeft.getX()+buildWidth, (int) lowerLeft.getY());
     }
+    /**
+     * Draws the building based on calculations
+     * @param g2 the graphics object
+     * @param lowerLeft the desired lower left coordinate of the building to be drawn
+     */
     public void drawBuilding(Graphics2D g2, Point lowerLeft)
     {
         //building width is 1/16 screen width and window width is 1/3 building width.
@@ -102,9 +120,13 @@ public class Building
     
     
     }
+    /**
+     * Method to be called to update object before repaint(). Also controls window lighting based on time
+     * @param currentTime the object that keeps the time (needed for operations)
+     */
     public void updateByTime(TimeOfDay currentTime)
     {
-        if(currentTime.isSwitchedDayNight())
+        if(currentTime.isSwitchedDayNight() || firstRun==1)
         {
             Random rnd = new Random();
             for(int i=0; i < numWinDown; i++)
