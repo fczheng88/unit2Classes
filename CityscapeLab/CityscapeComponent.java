@@ -63,17 +63,17 @@ public class CityscapeComponent extends JComponent
         // invoke the draw method on each object in your Cityscape
         // ...
                 
-        background.paintBackground(g2);
-        moonSun.drawMoonSun(g2);
-        building1.drawBuilding(g2, new Point(200, (int)(SCREEN_Y*3/4)));
-        building2.drawBuilding(g2, new Point((int)building1.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
-        building3.drawBuilding(g2, new Point((int)building2.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
-        building4.drawBuilding(g2, new Point((int)building3.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
-        building5.drawBuilding(g2, new Point((int)building4.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
-        building6.drawBuilding(g2, new Point((int)building5.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
+        background.draw(g2);
+        moonSun.draw(g2);
+        building1.draw(g2, new Point(SCREEN_X/8, (int)(SCREEN_Y*3/4)));
+        building2.draw(g2, new Point((int)building1.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
+        building3.draw(g2, new Point((int)building2.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
+        building4.draw(g2, new Point((int)building3.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
+        building5.draw(g2, new Point((int)building4.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
+        building6.draw(g2, new Point((int)building5.getLowerRight().getX()+SCREEN_X/136, (int)(SCREEN_Y*0.75)));
         
-        timeDisp.drawTimeInSun(g2);
-        road.drawRoad(g2);
+        timeDisp.draw(g2);
+        road.draw(g2);
     }
     
     /**

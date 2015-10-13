@@ -24,13 +24,12 @@ public class TimeDisplay
         timeToDraw = Integer.toString(hour) + ":" + Integer.toString(minute);
         location = new Point(0,0);
     }
-
     /**
-     * An example of a method - replace this comment with your own
+     * Draws Time near sun
      * 
      * @param  g2 the graphics object
      */
-    public void drawTimeInSun(Graphics2D g2)
+    public void draw(Graphics2D g2)
     {
         g2.setColor(Color.WHITE);
         g2.drawString(timeToDraw, (int) location.getX(), (int) location.getY());//adlfjasldsfjklaskjdflkasf);

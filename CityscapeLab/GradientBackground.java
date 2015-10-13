@@ -1,8 +1,5 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.Point;
 import java.awt.Color;
 import java.awt.GradientPaint;
 /**
@@ -34,7 +31,7 @@ public class GradientBackground
      * @param g2 The graphics object for painting/drawing
      */
     
-    public void paintBackground(Graphics2D g2)
+    public void draw(Graphics2D g2)
     {
         
         
@@ -81,15 +78,15 @@ public class GradientBackground
         //         //night
         //         else ----------------------------see message above-------------------*/
         if(currentTime.getHour()<currentTime.getRiseSet(true) || currentTime.getHour()>=currentTime.getRiseSet(false))
-        {
+        {//night
             color1 = new Color(25,25,112);
-            color2 = color1;
+            color2 = color1.darker().darker().darker().darker();
         }
         //day
         else
         {
             color1 = new Color(135, 206, 250) ;
-            color2 = color1;
+            color2 = color1.brighter().brighter().brighter();
         }
                 
     }

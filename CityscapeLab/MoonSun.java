@@ -12,14 +12,12 @@ import java.awt.Color;
  */
 public class MoonSun
 {
-    // instance variables - replace the example below with your own
-    
-    private int SCREEN_X, SCREEN_Y;
+    // instance variables - replace the example below with your own    
+    private int SCREEN_X, SCREEN_Y, radius;
     private boolean isSun;
     
     private Point ctrPosition;
-    
-    
+        
     private final static int MINUTES_IN_DAY = 24*60;
     /**
      * Constructor for objects of class Moon
@@ -30,9 +28,9 @@ public class MoonSun
     {
         this.SCREEN_X = screenX;
         this.SCREEN_Y = screenY;
-        ctrPosition = new Point(10000,10000);
+        this.radius = (SCREEN_X+SCREEN_Y)/48;
+        ctrPosition = new Point(10000,10000); //off the screen - invisible until updateByTime is called
     }
-
     /**
      * Draws a circle based on parameters
      * 
@@ -44,16 +42,16 @@ public class MoonSun
     public void makeCircle(Point ctrPos, int radius, Graphics2D g2)
     {
         
-        int cornerX = (int) ctrPos.getX() - radius;
-        int cornerY = (int) ctrPos.getY() - radius;
-        Ellipse2D.Double circle = new Ellipse2D.Double(cornerX, cornerY, radius, radius);
+        int cornerX = (int) ctrPos.getX() - radius; 
+        int cornerY = (int) ctrPos.getY() - radius; 
+        Ellipse2D.Double circle = new Ellipse2D.Double(cornerX, cornerY, radius, radius); 
         if(isSun == true)
         {
-            g2.setPaint(Color.YELLOW);
+            g2.setPaint(Color.YELLOW); //day
         }
         else
         {
-            g2.setPaint(Color.WHITE);
+            g2.setPaint(Color.WHITE); //night
         }
         g2.fill(circle);
         g2.draw(circle);
@@ -84,10 +82,10 @@ public class MoonSun
             currentMinutes = locHour*60 + currentTime.getMinute();
         }
                 
-        double x = (double) SCREEN_X*((double) currentMinutes)/((double) MINUTES_IN_DAY/2);
-        double y = 0.5*(1.0/(double) SCREEN_X)*Math.pow((x-(SCREEN_X/2.0)), 2)+(0.125*SCREEN_Y);
+        double x = (double) SCREEN_X*((double) currentMinutes)/((double) MINUTES_IN_DAY/2); 
+        double y = 0.5*(1.0/(double) SCREEN_X)*Math.pow((x-(SCREEN_X/2.0)), 2)+(0.125*SCREEN_Y); //based on vertex form equation
         
-        Point point = new Point((int) x, (int)  y);
+        Point point = new Point((int) x, (int) y);
         
         return point;
     }
@@ -95,10 +93,10 @@ public class MoonSun
      * Calls the makeCircle function to draw the circle, passing necessary params
      * @param g2 the graphics stuff
      */
-    public void drawMoonSun(Graphics2D g2)  
+    public void draw(Graphics2D g2)  
     {
-               
-        makeCircle(ctrPosition, 50, g2);
+        
+        makeCircle(ctrPosition, radius, g2);
        
     }
     /**

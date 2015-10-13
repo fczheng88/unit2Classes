@@ -1,12 +1,10 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
 import java.awt.Point;
 import java.awt.Color;
 import java.util.Random;
 import java.util.Arrays;
-
 /**
  * Draws buildings based on number of windows wide/high
  * 
@@ -76,7 +74,7 @@ public class Building
      * @param g2 the graphics object
      * @param lowerLeft the desired lower left coordinate of the building to be drawn
      */
-    public void drawBuilding(Graphics2D g2, Point lowerLeft)
+    public void draw(Graphics2D g2, Point lowerLeft)
     {
         //building width is 1/16 screen width and window width is 1/3 building width.
         //window height is 1/16 screen height and building height is bleh meh

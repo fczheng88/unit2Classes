@@ -3,7 +3,6 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.util.Scanner;
 
-
 /**
  * Class that contains the main method for the program and creates the frame containing the component.
  * 
@@ -12,7 +11,6 @@ import java.util.Scanner;
  */
 public class CityscapeViewer
 { 
-    
     static final Dimension SCREEN_DIM = Toolkit.getDefaultToolkit().getScreenSize();
     
     static final int SCREEN_X = (int) SCREEN_DIM.getWidth();
@@ -21,8 +19,7 @@ public class CityscapeViewer
     /**
      * main method for the program which creates and configures the frame for the program
      *
-     */
-    
+     */    
     public static void main(String[] args) throws InterruptedException
     {
         // create and configure the frame (window) for the program
@@ -64,7 +61,6 @@ public class CityscapeViewer
                 
             }
         }
-        
         // a frame contains a single component; create the Cityscape component and add it to the frame
         CityscapeComponent component = new CityscapeComponent( SCREEN_X, SCREEN_Y);
         frame.add(component);

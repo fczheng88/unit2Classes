@@ -1,10 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.Point;
 import java.awt.Color;
-import java.awt.GradientPaint;
 /**
  * For drawing the road
  * 
@@ -15,7 +11,6 @@ public class Road
 {
     // instance variables - replace the example below with your own
     private int SCREEN_X, SCREEN_Y;
-
     /**
      * Constructor for objects of class Road
      * @param screenX The width of the frame/screen
@@ -27,22 +22,16 @@ public class Road
         this.SCREEN_X = screenX;
         this.SCREEN_Y = screenY;
     }
-
     /**
      * Draws the road when called
-     * 
      * @param  g2   the graphics object
-     * 
      */
-    public void drawRoad(Graphics2D g2)
+    public void draw(Graphics2D g2)
     {
-        
-        
+               
         Rectangle background = new Rectangle(0,SCREEN_Y*3/4,SCREEN_X,SCREEN_Y/4);
         g2.setPaint(Color.BLACK);
         g2.fill(background);
-        g2.draw(background);
-        
-        
+        g2.draw(background);        
     }
 }
